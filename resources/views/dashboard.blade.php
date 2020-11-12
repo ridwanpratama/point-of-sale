@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'POS - Dashboard')
+@section('title', 'POS Dashboard')
 @section('pagetitle')
     <h1>Dashboard</h1>
 @endsection
