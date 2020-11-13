@@ -12,7 +12,7 @@
                 <div class="form-row align-items-center">
                     <div class="col-auto">
                         <input type="date" class="form-control @error('startDate') is-invalid @enderror mb-3" name="startDate" id="startDate">
-                        @error('starDate')
+                        @error('startDate')
                             <div class="invalid-feedback">{{$message}}</div>
                             @enderror
                     </div>
@@ -27,6 +27,12 @@
                     </div>
                     <div class="col-auto">
                         <button type="submit" class="btn btn-primary mb-3">Cari</button>
+                        @php if(isset($startDate) && isset($endDate)){ @endphp
+                            <a href="{{ route('laporan.print_barang', ['startDate' => $startDate, 'endDate' => $endDate]) }}" class="btn btn-info mb-3 ml-2">Cetak</a>
+                            @php }else{ @endphp
+                            <a href="{{ route('laporan.print_barang') }}" class="btn btn-info mb-3 ml-2">Cetak</a>
+                            @php } 
+                        @endphp
                     </div>
             </div>
         </div>
