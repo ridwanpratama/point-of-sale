@@ -35,7 +35,8 @@
 </form>
 <div class="card">
     <div class="card-body">
-    <table class="table table-striped table-bordered table-md">
+    <table id="table" class="table table-striped table-bordered table-md">
+    <thead>
         <tr>
             <th>No</th>        
             <th>Kode Transaksi</th>
@@ -45,6 +46,8 @@
             <th>Total Harga</th>
            	<th>Tanggal Beli</th>
         </tr>
+    </thead> 
+    <tbody>
         @foreach ($transaksi as $item)
         <tr>
             <td>{{ $loop->iteration }}</td>
@@ -56,6 +59,15 @@
             <td>{{ $item->tanggal_beli }}</td>
         </tr>
         @endforeach
+    </tbody>
     </table>
 </div>
 @endsection
+
+@push('after-script')
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#table').DataTable();
+    } );
+</script>
+@endpush
