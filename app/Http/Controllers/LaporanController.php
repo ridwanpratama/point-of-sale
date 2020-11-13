@@ -92,7 +92,7 @@ class LaporanController extends Controller
         $to = $request->endDate;
  
         $title ="Laporan From: ".$from."To:".$to;
-        $redirect = route('laporan');   
+        $redirect = route('laporan_barang');   
         if(isset($from) && isset($to)){
             $startDate = $from;
             $endDate = $to;
