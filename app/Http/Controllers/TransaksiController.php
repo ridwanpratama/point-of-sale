@@ -16,7 +16,7 @@ class TransaksiController extends Controller
 
     public function create()
     {
-        $data = Barang::all();
+        $data = Barang::where('stok_barang', '>', 0)->get();
         $transaksi = Transaksi::all();
         return view('transaksi.index', compact('data', 'transaksi'));
     }

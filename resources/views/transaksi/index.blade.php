@@ -34,7 +34,7 @@
                         <select class="form-control" name="barang_id" id="barang_id">
                           <option value disable>Pilih Barang</option>
                           @foreach ($data as $item)
-                          <option value="{{ $item->id }}" data-harga="{{$item->harga_barang}}">{{ $item->nama_barang }}</option>
+                          <option value="{{ $item->id }}" data-stok={{ $item->stok_barang }} data-harga="{{$item->harga_barang}}">{{ $item->nama_barang }}</option>
                           @endforeach
                         </select>
                       </div>
@@ -97,25 +97,35 @@
 
 @push('page-scripts')
 <script>
-  $('select').change(function(){
-      let harga = $(this).find(':selected').data('harga')
-      
-      $('#jumlah_beli').keyup(function(){
+$(document).ready(function(){
+
+    $('select').change(function(){
+      let harga = $(this).find(':selected').data('harga');
+      let stok = $(this).find(':selected').data('stok');
+
+      jQuery('#jumlah_beli').keyup(function(){
           let jumlah_beli = $('#jumlah_beli').val()
-          let total = parseInt(harga) * parseInt(jumlah_beli)
+          if(jumlah_beli > stok){
+            $('#jumlah_beli').val();
+            alert('Stok Tidak Mencukupi');
+          }else{
+            let total = parseInt(harga) * parseInt(jumlah_beli)
 
-          if (harga == "kosong") {
-              total = ""
-          }
+            if (harga == "kosong") {
+                total = ""
+            }
 
-          if (jumlah_beli == "") {
-              total = ""
-          }
+            if (jumlah_beli == "") {
+                total = ""
+            }
 
-          if(!isNaN(total)){
-              $('#total_harga').val(total)
+            console.log(total);
+            if(!isNaN(total)){
+                $('#total_harga').val(total)
+            }
           }
       })
   })
+});
 </script>
 @endpush
