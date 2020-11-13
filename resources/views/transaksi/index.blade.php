@@ -98,12 +98,11 @@
 @push('page-scripts')
 <script>
 $(document).ready(function(){
-
     $('select').change(function(){
       let harga = $(this).find(':selected').data('harga');
       let stok = $(this).find(':selected').data('stok');
 
-      jQuery('#jumlah_beli').keyup(function(){
+      $('#jumlah_beli').keyup(function(){
           let jumlah_beli = $('#jumlah_beli').val()
           if(jumlah_beli > stok){
             $('#jumlah_beli').val();
